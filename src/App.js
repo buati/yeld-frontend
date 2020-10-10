@@ -83,6 +83,10 @@ class App extends Component {
     const account = await this.getAccount()
     window.web3.eth.defaultAccount = account
 
+    window.ethereum.on('accountsChanged', function (accounts) {
+      window.location.reload()
+    })
+
     // Create the retirementyeld and yelddai contract instances
     window.retirementYeld = new window.web3.eth.Contract(yeldConfig.retirementYeldAbi, yeldConfig.retirementYeldAddress)
     window.yDAI = new window.web3.eth.Contract(yeldConfig.yDAIAbi, yeldConfig.yDAIAddress)
